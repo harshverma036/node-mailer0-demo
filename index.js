@@ -4,18 +4,18 @@ const dotenv = require("dotenv");
 dotenv.config();
 console.log(process.env.PORT, process.env.HOST)
 const transport = nodemailer.createTransport({
-  host: process.env.HOST,
-  port: process.env.PORT,
+  host: process.env.SMTP_HOST,
+  port: process.env.SMTP_PORT,
   auth: {
-    user: process.env.USER,
-    pass: process.env.PASS
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS
   },
 });
 
 
 transport.sendMail({
-    from: process.env.FROM,
-    to: "harsh@onepercentstartups.com",
+    from: process.env.SMTP_FROM,
+    to: ["harsh@onepercentstartups.com"],
     subject: "new mail",
     html: "<h1>Hello World</h1>"
 }, (err, info) => {
